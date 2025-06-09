@@ -14,12 +14,14 @@ export default function TextForm(props) {
         console.log("Uppercase was clicked")
         let newText= text.toUpperCase();
         setText(newText)
+        props.showalert("Converted to Upper Case", "success");
     }
 
     const handleLoClick= () =>{
         console.log("Lowercase was clicked")
         let newText= text.toLowerCase();
         setText(newText);
+        props.showalert("Converted to Lower Case", "success");
     }
 
     const handleClearClick= () =>{

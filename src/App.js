@@ -5,6 +5,12 @@ import TextForm from './components/TextForm';
 import About from './components/About';
 import { useState } from 'react';
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 function App() {
@@ -38,12 +44,20 @@ function App() {
 
   return (
     <>
-   <Navbar title="TextUtils" aboutText="AboutTextUtils" mode={mode} toggleMode={toggleMode} />
-   <Alert  alert={alert} />
-   <div className="container my-3">
-   <TextForm showalert={showalert} heading="Enter text to analyse below" mode={mode}  />
-   {/* <About/> */}
-   </div>
+    <Router>
+  <Navbar title="TextUtils" aboutText="AboutTextUtils" mode={mode} toggleMode={toggleMode} />
+  <Alert alert={alert} />
+  <div className="container my-3">
+    <Routes>
+      {/* Why exact is used in Router ?? React does partial matching
+      /users--> Component 1
+      /users/home--> Component 2 */}
+      
+      <Route exact path="/about" element={<About />} />
+      <Route exact path="/" element={<TextForm showalert={showalert} heading="Enter text to analyse below" mode={mode} />} />
+    </Routes>
+  </div>
+</Router>
   </>
     
   );
